@@ -1,10 +1,17 @@
-import pika
+# import
+import pika # Python librarby based on the AMQR protocol
+import datetime # Get current time
+import time # Sleep library
 
-# Connect to RabbitMQ server
-connection = pika.BlockingConnection(pika.ConnectionParameters('192.168.50.2'))
+# RabbitMQ connection
+credentials = pika.PlainCredentials('admin', 'RabbitAdmin')                     # Credentials for the Rabbitmq user
+parameters = pika.ConnectionParameters('192.168.2.19', 5672, '/', credentials)  # Connection data of the broker
+
+# Creating connection
+connection = pika.BlockingConnection(parameters)
 channel = connection.channel()
 
-# Declare the same queue
+# Declare a queue (creates if it doesn't exist)
 channel.queue_declare(queue='test_queue')
 
 def callback(ch, method, properties, body):
