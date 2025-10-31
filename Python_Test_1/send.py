@@ -14,12 +14,14 @@ channel = connection.channel()
 # Declare a queue (creates if it doesn't exist)
 channel.queue_declare(queue='test_queue')
 
-# Send messages
+# Time loop
 for i in range(60):
+    # Get current time
     current_time = datetime.datetime.now()
     clock = current_time.strftime("%H:%M:%S.%f")[:-2]
     message = f"{clock}"
     
+    # Send message
     channel.basic_publish(exchange='',
                           routing_key='test_queue',
                           body=message)
