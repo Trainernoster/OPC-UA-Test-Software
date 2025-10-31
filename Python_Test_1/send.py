@@ -17,7 +17,7 @@ channel.queue_declare(queue='test_queue')
 # Send messages
 for i in range(60):
     current_time = datetime.datetime.now()
-    clock = current_time.strftime("%H:%M:%S")
+    clock = current_time.strftime("%H:%M:%S.%f")[:-2]
     message = f"The current time is {clock}"
     
     channel.basic_publish(exchange='',
