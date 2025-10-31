@@ -1,7 +1,7 @@
 import pika
 
 # RabbitMQ connection
-connection = pika.BlockingConnection(pika.ConnectionParameters('vm1-ip'))
+connection = pika.BlockingConnection(pika.ConnectionParameters('192.168.50.2'))
 channel = connection.channel()
 
 # Declare a queue (creates if it doesn't exist)
