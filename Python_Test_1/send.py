@@ -18,7 +18,7 @@ channel.queue_declare(queue='test_queue')
 for i in range(60):
     current_time = datetime.datetime.now()
     clock = current_time.strftime("%H:%M:%S.%f")[:-2]
-    message = f"The current time is {clock}"
+    message = f"{clock}"
     
     channel.basic_publish(exchange='',
                           routing_key='test_queue',
