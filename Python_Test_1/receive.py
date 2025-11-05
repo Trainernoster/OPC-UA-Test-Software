@@ -6,7 +6,7 @@ import sys # System library to get CLI access
 
 # RabbitMQ connection
 credentials = pika.PlainCredentials('admin', 'RabbitAdmin')                     # Credentials for the Rabbitmq user
-parameters = pika.ConnectionParameters('192.168.2.19', 5672, '/', credentials)  # Connection data of the broker
+parameters = pika.ConnectionParameters('192.168.50.2', 5672, '/', credentials)  # Connection data of the broker
 
 # Creating connection
 connection = pika.BlockingConnection(parameters)
