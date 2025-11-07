@@ -6,7 +6,7 @@ class OPCUAClient:
     def __init__(
             self, 
             _server_name: str = "OPC-UA-Server", 
-            _endpoint: str = "opc.tcp://0.0.0.0:4840/freeopcua/server/",
+            _endpoint: str = "opc.tcp://192.168.50.52:4840/freeopcua/server/",
         ) -> None:
         """ Initialize the OPC UA server with given parameters or configuration file. """
         self.server_name: str = _server_name    # Server name
