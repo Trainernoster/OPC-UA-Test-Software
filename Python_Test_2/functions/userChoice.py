@@ -1,6 +1,6 @@
-import numpy as NP
+
 @staticmethod
-def get_choices(_question : str = "Enter your question here", _delete_question : bool = True, _choices : NP = ["y","n"]) -> str:
+def get_choices(_question : str = "Enter your question here", _delete_question : bool = True, _choices: list = ["y","n"]) -> str:
     """ Returns the user choice as a string. """
     answered = False
     answer : str = None
@@ -15,7 +15,8 @@ def get_choices(_question : str = "Enter your question here", _delete_question :
             _delete_rows()
     return answer
 
-def get_choices_TureFalse(_question : str = "Enter your question here", _delete_question : bool = True, _choices : NP = ["y","n"]) -> str:
+@staticmethod
+def get_choices_TureFalse(_question : str = "Enter your question here", _delete_question : bool = True, _choices: list = ["y","n"]) -> str:
     """ Returns if the user accepts one choice. """
     answer = None
     print(_question + " (" + "/".join(_choices) + "):")
