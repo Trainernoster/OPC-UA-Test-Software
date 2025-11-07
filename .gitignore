@@ -1,5 +1,5 @@
 # Python
-__pychache__/
-*.pyv
+__pycache__/
+*.pyc
 *.pyo
 *.pyd
