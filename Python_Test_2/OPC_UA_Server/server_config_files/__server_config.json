@@ -1,0 +1,29 @@
+{
+    "server_name": "OPC-UA-Server",
+    "endpoint": "opc.tcp://0.0.0.0:4840/freeopcua/server/",
+
+    "namespaces": [
+        {
+            "namespaceIndex": 2,
+            "namespaceUri": "http://mynodes.local",
+            "description": "Namespace for custom object nodes"
+        }
+    ],
+
+    "nodes": [
+        {
+            "nodeHeader": {
+                "nodeId": {"ns": 2, "i": 1001},
+                "nodeClass": "Object",
+                "browseName": "Device1",
+                "displayName": "Device1",
+                "description": "A sendsor device",
+                "namespaceUri": "http://mynodes.local",
+                "parentNodeId": {"ns": 0, "i": 85}
+            }
+        }
+
+    ]
+
+
+}
