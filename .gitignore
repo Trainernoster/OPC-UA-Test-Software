@@ -11,5 +11,7 @@ localTest/
 .venv/
 
 # VS Code
-
 .vscode/
+
+# Logs
+*.log
