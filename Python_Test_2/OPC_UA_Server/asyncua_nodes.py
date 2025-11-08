@@ -210,9 +210,3 @@ class OPCUANodes:
                 # Recursively find children of the current node
                 self._find_children(_current_parent_node = node.node_header["i"], _current_level = _current_level + 1)
         return 1
-
-        
-
-
-
-
