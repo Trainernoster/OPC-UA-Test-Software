@@ -66,7 +66,7 @@ class OPCUAServer:
         print(f"Starting server at {self.endpoint}")
         await self.server.start()
         self._running = True
-        #print("Server is running")
+        print("Server is running")
         return 1
 
     async def stop_server(self) -> int:
@@ -76,9 +76,9 @@ class OPCUAServer:
             return 0
 
         self._running = False  # exit the server loop
-        #print("Stopping server...")
+        print("Stopping server...")
         await self.server.stop()
-        #print("Server stopped")
+        print("Server stopped")
         return 1
     
     async def add_device(self, _device_name : str = None) -> int:
@@ -90,7 +90,7 @@ class OPCUAServer:
             print("Cannot set up address space while server is not running.")
             return 0
         
-        #print("Address space set up.")
+        print("Address space set up.")
         return 1
     
     async def setup_nodes(self) -> int:
