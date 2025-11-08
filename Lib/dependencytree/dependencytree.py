@@ -61,7 +61,7 @@ Example name list (_object_names):
 """
 
 @staticmethod
-def dependencetree_Print(_tree: list = [], _object_names: list = [], _add_names: bool = False, _names_only: bool = False) -> int:
+def dependencytree_Print(_tree: list = [], _object_names: list = [], _add_names: bool = False, _names_only: bool = False) -> int:
     """ Print tree function """
     
     """
