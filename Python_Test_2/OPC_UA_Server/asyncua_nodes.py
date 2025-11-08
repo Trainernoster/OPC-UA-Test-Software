@@ -96,6 +96,8 @@ class OPCUANodes:
                     case "Methode":
                         ...
 
+                print(node.node)
+
             return 1
 
             

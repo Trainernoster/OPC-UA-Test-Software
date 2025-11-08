@@ -1,11 +1,17 @@
 {
     "server_name": "OPC-UA-Server",
-    "endpoint": "opc.tcp://0.0.0.0:4840/freeopcua/server/",
+    "endpoint": "opc.tcp://192.168.50.52:4840/freeopcua/server/",
 
     "namespaces": [
         {
             "namespaceIndex": 2,
             "namespaceUri": "http://mynodes.local",
+            "description": "Namespace for custom object nodes"
+        },
+
+        {
+            "namespaceIndex": 3,
+            "namespaceUri": "http://mynodes.global",
             "description": "Namespace for custom object nodes"
         }
     ],
@@ -20,6 +26,28 @@
                 "description": "A sendsor device",
                 "namespaceUri": "http://mynodes.local",
                 "parentNodeId": {"ns": 0, "i": 85}
+            }
+        },
+
+        {
+            "nodeHeader": {
+                "nodeId": {"ns": 2, "i": 1003},
+                "nodeClass": "Variable",
+                "browseName": "Temperature",
+                "displayName": "Temp1",
+                "description": "A temperature sendor device",
+                "namespaceUri": "http://mynodes.local",
+                "parentNodeId": {"ns": 2, "i": 1001}
+            },
+            "data": {
+                "value": 1,
+                "dataType": "int",
+                "valueRank": -1,
+                "arrayDimensions": "none"
+            },
+            "access": {
+                "readable": true,
+                "writeable": true
             }
         },
 
@@ -42,6 +70,64 @@
             "access": {
                 "readable": true,
                 "writeable": true
+            }
+        },
+
+        {
+            "nodeHeader": {
+                "nodeId": {"ns": 2, "i": 1005},
+                "nodeClass": "Methode",
+                "browseName": "StartMotor",
+                "displayName": "StartMot",
+                "description": "A motor start device",
+                "namespaceUri": "http://mynodes.local",
+                "parentNodeId": {"ns": 2, "i": 1001}
+            }
+        },
+
+        {
+            "nodeHeader": {
+                "nodeId": {"ns": 3, "i": 1002},
+                "nodeClass": "Object",
+                "browseName": "Device1",
+                "displayName": "Device1",
+                "description": "A temperature sendor device",
+                "namespaceUri": "http://mynodes.global",
+                "parentNodeId": {"ns": 0, "i": 85}
+            }
+        },
+
+        {
+            "nodeHeader": {
+                "nodeId": {"ns": 3, "i": 1006},
+                "nodeClass": "Variable",
+                "browseName": "Speed",
+                "displayName": "V1",
+                "description": "A speed sendor device",
+                "namespaceUri": "http://mynodes.global",
+                "parentNodeId": {"ns": 3, "i": 1002}
+            },
+            "data": {
+                "value": 1,
+                "dataType": "int",
+                "valueRank": -1,
+                "arrayDimensions": "none"
+            },
+            "access": {
+                "readable": true,
+                "writeable": true
+            }
+        },
+
+        {
+            "nodeHeader": {
+                "nodeId": {"ns": 3, "i": 1007},
+                "nodeClass": "Methode",
+                "browseName": "StopMotor",
+                "displayName": "StopMot",
+                "description": "A motor stop device",
+                "namespaceUri": "http://mynodes.global",
+                "parentNodeId": {"ns": 3, "i": 1002}
             }
         }
 
