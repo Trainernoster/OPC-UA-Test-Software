@@ -61,7 +61,7 @@ Example name list (_object_names):
 """
 
 @staticmethod
-def dependencytree_Print(_tree: list = [], _object_names: list = [], _add_names: bool = False, _names_only: bool = False) -> int:
+def dependencytree_print(_tree: list = [], _object_names: list = [], _add_names: bool = False, _names_only: bool = False) -> int:
     """ Print tree function """
     
     """
@@ -76,14 +76,14 @@ def dependencytree_Print(_tree: list = [], _object_names: list = [], _add_names:
     """
 
     # Get the children list
-    children = _get_All_Children(_tree= _tree)
+    children = _get_all_children(_tree= _tree)
 
     # Print tree
-    _print_Tree(_tree= _tree, _children= children, _object_names= _object_names, _add_names= _add_names, _names_only= _names_only)
+    _print_tree(_tree= _tree, _children= children, _object_names= _object_names, _add_names= _add_names, _names_only= _names_only)
     return 1
 
 @staticmethod
-def _get_All_Children (_tree) -> list:
+def _get_all_children (_tree) -> list:
         """ Find all "close" children """
     
         """
@@ -118,7 +118,7 @@ def _get_All_Children (_tree) -> list:
         return result
 
 @staticmethod
-def _print_Tree(_tree: list = [], _children: list = [], _object_names: list = [], _add_names: bool = False, _names_only: bool = False) -> int:
+def _print_tree(_tree: list = [], _children: list = [], _object_names: list = [], _add_names: bool = False, _names_only: bool = False) -> int:
     """ Print the tree  """
     
     """
@@ -155,7 +155,7 @@ def _print_Tree(_tree: list = [], _children: list = [], _object_names: list = []
         """
         node_id = ids[_idx]
         node_name = names_lookup.get(node_id, "")
-        text = _create_Object_print(_id= node_id, _name= node_name, _add_names= _add_names, _names_only= _names_only)
+        text = _create_object_print(_id= node_id, _name= node_name, _add_names= _add_names, _names_only= _names_only)
 
         prefix = ""
         for i, has_vertical in enumerate(_prefix_parts[:-1]):
@@ -177,7 +177,7 @@ def _print_Tree(_tree: list = [], _children: list = [], _object_names: list = []
     _print_node(0)
 
 @staticmethod
-def _create_Object_print(_id: int = 0, _name: str = None, _add_names: bool = False, _names_only: bool = False) -> str:
+def _create_object_print(_id: int = 0, _name: str = None, _add_names: bool = False, _names_only: bool = False) -> str:
     """ Creates  """
     
     """

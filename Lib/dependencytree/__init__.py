@@ -1,1 +1,1 @@
-from .dependencytree import dependencytree_Print
+from .dependencytree import dependencytree_print
