@@ -1,4 +1,4 @@
-from dependencytree import dependencetree_Print
+from dependencytree import dependencytree_Print
 
 def main():
     testlist: list = [
@@ -27,6 +27,6 @@ def main():
         [1009,      "sub sub sub folder1"],
         ]
     
-    dependencetree_Print(_tree= testlist, _object_names= testnames, _add_names= True, _names_only= True)
+    dependencytree_Print(_tree= testlist, _object_names= testnames, _add_names= True, _names_only= True)
 
 main()
