@@ -1,6 +1,15 @@
 class OPCUANamespace:
-    def __init__(self, _namespace_json) -> None:
+    def __init__(self, _namespace_json: list) -> None:
         """ Initialize an OPC UA Nameapce with given configuration. """
+
+        """
+            Attributes:             
+                self                obj     self
+                _namespace_json     list    contains namespace information
+                
+            Return value:
+                int 
+        """
         self.namespace_json = _namespace_json
         self.namespace_header = None
         self.server_namespace_id = None

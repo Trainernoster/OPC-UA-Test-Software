@@ -13,24 +13,29 @@ from OPC_UA_Server import OPCUAServer
 async def main():
     """ Main function to run the OPC UA server. """
 
-    useSetupServerFile = True #get_choice_YesNo(_question = "Use server configuration file?", _delete_question = True)
+    useSetupServerFile = True 
     opc_ua_server = OPCUAServer(_use_config_file = useSetupServerFile)    
 
-    await opc_ua_server.setup_server()
+    # Autostart the server
+    await opc_ua_server.autostart()
+
+    await opc_ua_server.stop_server()
+
+    # Iniziate the OPC-UA server
+    #await opc_ua_server.setup_server()
     
 
-    await opc_ua_server.start_server()
-    await opc_ua_server.setup_nodes()
-    await opc_ua_server.add_device()
-    print (await opc_ua_server.server.get_namespace_array())
+    #await opc_ua_server.start_server()
+    #await opc_ua_server.setup_nodes()
+    #await opc_ua_server.add_device()
 
-    while True: #not get_choices_TureFalse(_question = "Write \"s\" to stop the server.", _delete_question = True, _choices = ["s"]):
-        await asyncio.sleep(10)
+    #while True: #not get_choices_TureFalse(_question = "Write \"s\" to stop the server.", _delete_question = True, _choices = ["s"]):
+    #    await asyncio.sleep(10)
 
-    print(await opc_ua_server.server.get_namespace_array())
-    print(await opc_ua_server.server.get_namespace_index("http://mynodes.local"))
-    print(await opc_ua_server.server.get_namespace_index("http://mynodes.global"))
-    await opc_ua_server.stop_server()
+    #print(await opc_ua_server.server.get_namespace_array())
+    #print(await opc_ua_server.server.get_namespace_index("http://mynodes.local"))
+    #print(await opc_ua_server.server.get_namespace_index("http://mynodes.global"))
+    #await opc_ua_server.stop_server()
     
 
 if __name__ == "__main__":

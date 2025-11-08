@@ -1,6 +1,15 @@
 class OPCUANode:
-    def __init__(self, _node_json) -> None:
+    def __init__(self, _node_json: list) -> None:
         """ Initialize an OPC UA Node with given configuration. """
+
+        """
+            Attributes:        
+                self           obj     self
+                _node_json     list    contains node information
+                
+            Return value:
+                int 
+        """
         self.node_json = _node_json
         self.node_header = None
         self.node = None
