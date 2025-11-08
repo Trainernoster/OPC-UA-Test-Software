@@ -68,8 +68,8 @@ def dependencytree_Print(_tree: list = [], _object_names: list = [], _add_names:
         Attributes:             
             _tree               list    contains the tree shape, information about the heritage
             _objcet_names       list    contains the name for every object
-            _add_names          bool    If True, prints the id and the name
-            _names_only         bool    If True, prints only the name, overrieds _add_names
+            _add_names          bool    if True, prints the id and the name
+            _names_only         bool    if True, prints only the name, overrieds _add_names
 
         Return value:
             int 
@@ -91,7 +91,7 @@ def _get_All_Children (_tree) -> list:
                 _tree               list    contains the tree shape, information about the heritage
             
             Return value:
-                children            list    List of close children 
+                children            list    list of close children 
         """
         n = len(_tree)
         result = []
@@ -126,8 +126,8 @@ def _print_Tree(_tree: list = [], _children: list = [], _object_names: list = []
             _tree               list    contains the tree shape, information about the heritage
             _children           list    contains the infomration about the closesed children
             _objcet_names       list    contains the name for every object
-            _add_names          bool    If True, prints the id and the name
-            _names_only         bool    If True, prints only the name, overrieds _add_names
+            _add_names          bool    if True, prints the id and the name
+            _names_only         bool    if True, prints only the name, overrieds _add_names
 
         Return value:
             int 
@@ -184,11 +184,11 @@ def _create_Object_print(_id: int = 0, _name: str = None, _add_names: bool = Fal
         Attributes:             
             _id                 int     contains the node id
             _name               str     contains the node name
-            _add_names          bool    If True, prints the id and the name
-            _names_only         bool    If True, prints only the name, overrieds _add_names
+            _add_names          bool    if True, prints the id and the name
+            _names_only         bool    if True, prints only the name, overrieds _add_names
 
         Return value:
-            printable text      str     Text which should be printed at this node in the tree
+            printable text      str     text which should be printed at this node in the tree
     """
     if _names_only:
         return _name
