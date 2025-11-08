@@ -21,6 +21,28 @@
                 "namespaceUri": "http://mynodes.local",
                 "parentNodeId": {"ns": 0, "i": 85}
             }
+        },
+
+        {
+            "nodeHeader": {
+                "nodeId": {"ns": 2, "i": 1004},
+                "nodeClass": "Variable",
+                "browseName": "Pressure",
+                "displayName": "Press1",
+                "description": "A pressure sendor device",
+                "namespaceUri": "http://mynodes.local",
+                "parentNodeId": {"ns": 2, "i": 1001}
+            },
+            "data": {
+                "value": 1,
+                "dataType": "int",
+                "valueRank": -1,
+                "arrayDimensions": "none"
+            },
+            "access": {
+                "readable": true,
+                "writeable": true
+            }
         }
 
     ]
