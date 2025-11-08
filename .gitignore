@@ -9,3 +9,7 @@ localTest/
 
 # Virtual environments
 .venv/
+
+# VS Code
+
+.vscode/
