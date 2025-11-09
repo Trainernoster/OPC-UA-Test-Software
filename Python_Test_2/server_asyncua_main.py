@@ -33,8 +33,8 @@ async def main():
     #await opc_ua_server.setup_nodes()
     #await opc_ua_server.add_device()
 
-    #while True: #not get_choices_TureFalse(_question = "Write \"s\" to stop the server.", _delete_question = True, _choices = ["s"]):
-    #    await asyncio.sleep(10)
+    while True: #not get_choices_TureFalse(_question = "Write \"s\" to stop the server.", _delete_question = True, _choices = ["s"]):
+        await asyncio.sleep(10)
 
     #print(await opc_ua_server.server.get_namespace_array())
     #print(await opc_ua_server.server.get_namespace_index("http://mynodes.local"))
