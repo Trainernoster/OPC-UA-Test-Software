@@ -1,6 +1,6 @@
 class OPCUANamespace:
     def __init__(self, _namespace_json: list) -> None:
-        """ Initialize an OPC UA Nameapce with given configuration. """
+        """ Initialize an OPC UA Namespace with given configuration. """
 
         """
             Attributes:             
@@ -10,22 +10,46 @@ class OPCUANamespace:
             Return value:
                 int 
         """
-        self.namespace_json = _namespace_json
-        self.namespace_header = None
-        self.server_namespace_id = None
-        self.id_consensus = None
-        self.set_Namespace_Header()
-        
-    def set_Namespace_Header(self) -> int:
+        self.namespace_json = _namespace_json   # pre assigned namespace information json
+        self.namespace_header = None            # pre assigned namespace header
+        self.server_assigned_header = None      # automatic assigned namesapce header
+        self.set_namespace_header()
+    
+    def set_namespace_header(self) -> int:
+        """ Set pre assigned information. """
+
+        """
+            Attributes:                 
+                self                    obj     self
+                
+            Return value:
+                int 
+        """
         self.namespace_header ={
             "ns" : self.namespace_json.get("namespaceIndex"),
             "namespaceUri": self.namespace_json.get("namespaceUri"),
             "description": self.namespace_json.get("description")
         }
 
-    def set_Server_Namespace_id(self, _server_namespace_id) -> int:
-        self.server_namespace_id = _server_namespace_id
-        if self.server_namespace_id == self.namespace_header["ns"]:
-            self.id_consensus = True
+    def set_server_assigned_information(self, _server_namespace_id: str, _server_namespaceUri: str) -> int:
+        """ Set server assigned information. """
+
+        """
+            Attributes:                 
+                self                    obj     self
+                _server_namespace_id    str     namespace id assigned from server
+                _server_namespaceUri    str     namespace uri assigned from server
+                
+            Return value:
+                int 
+        """
+        self.server_assigned_header = {
+            "ns" : _server_namespace_id,
+            "namespaceUri": _server_namespaceUri,
+            "id_consensus": None
+        }
+
+        if self.server_assigned_header["ns"] == self.namespace_header["ns"]:
+            self.server_assigned_header["id_consensus"] = True
         else:
-            self.id_consensus = False
+            self.server_assigned_header["id_consensus"] = False

@@ -9,6 +9,7 @@ from functions import get_choice_YesNo, get_choices, get_choices_TureFalse
 ## Import Server
 ##
 from OPC_UA_Server import OPCUAServer
+from Lib.dependencytree import dependencytree
 
 async def main():
     """ Main function to run the OPC UA server. """
@@ -18,6 +19,9 @@ async def main():
 
     # Autostart the server
     await opc_ua_server.autostart()
+
+    mode_tree = opc_ua_server.get_server_node_tree()
+    dependencytree.dependencytree_print(_tree= mode_tree["node_tree"], _object_names= mode_tree["server_node_information"], _add_names= True, _names_only= True)
 
     await opc_ua_server.stop_server()
 

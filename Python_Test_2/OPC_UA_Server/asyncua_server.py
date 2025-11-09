@@ -117,6 +117,7 @@ class OPCUAServer:
             self.logger.info("OPC-UA nodes are created by autostart ...")
             await self.init_node_container()
             self.load_namespaces_and_nodes_to_container()
+            await self.activate_namespaces_and_nodes_on_server()
 
 
         self.logger.info("-------------------- OPC-UA server has autostarted --------------------")
@@ -133,10 +134,10 @@ class OPCUAServer:
                 int 
         """
 
-        self.server = Server()
-        await self.server.init()
-        self.server.set_endpoint(self.endpoint)
-        self.server.set_server_name(self.server_name)
+        self.server = Server()                                         
+        await self.server.init()                                       ################################################################################################
+        self.server.set_endpoint(self.endpoint)                        ################################################################################################
+        self.server.set_server_name(self.server_name)                  ################################################################################################
 
         self.logger.info("-------------------- OPC-UA server is initialised --------------------")
         return 1
@@ -159,7 +160,7 @@ class OPCUAServer:
             self.logger.warning("Trying to start a running server. Abort starting server.")
             return -1
         
-        await self.server.start()
+        await self.server.start()                                ################################################################################################
         self._running = True
         self.logger.info("----------------------------------------------------------------------------------")
         self.logger.info("OPC UA Server started!")
@@ -206,7 +207,7 @@ class OPCUAServer:
             self.logger.warning("Trying to initialise a node container, but one is still there. Abort initialising node container.")
             return -1
         
-        self.node_container = OPCUANodeContainer(_server= self.server, _namespace_jsons= self.namespace_jsons, _node_jsons= self.node_jsons, _logger= self.logger)
+        self.node_container = OPCUANodeContainer(_server= self.server, _namespace_jsons= self.namespace_jsons, _node_jsons= self.node_jsons, _logger= self.logger, _logger_active= True)
         self.logger.info("-------------------- OPC-UA node container initialised --------------------")
         return 1
 
@@ -227,72 +228,7 @@ class OPCUAServer:
         
         self.node_container.load_namespaces_and_nodes()
         return 1
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
+ 
     async def activate_namespaces_and_nodes_on_server(self) -> int:
         """ Activate loaded namespaces and nodes to server. """
         
@@ -303,123 +239,13 @@ class OPCUAServer:
             Return value:
                 int 
         """
-        ...
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
-    
-    
-
-
-    
-    async def add_device(self, _device_name : str = None) -> int:
-        """ Set up the address space of the OPC UA server. """
-        if self.server is None:
-            print("Server not initialised. Call setup_server first.")
-            return 0
-        elif not self._running:
-            print("Cannot set up address space while server is not running.")
-            return 0
+        if not self.node_container:
+            self.logger.warning("Trying to activate namespaces and nodes on server, but no container exists. Abort activating namespaces and nodes.")
+            return -1
         
-        print("Address space set up.")
-        return 1
-    
-    async def setup_nodes(self) -> int:
-        """ Set up the OPC UA nodes in the server based on the provided node JSON configurations. """
-        if self.nodes is not None:
-            print ("Nodes already set up.")
-            return 0
-        elif self.namespace_jsons == [] or self.node_jsons == []:
-            print("No namespaces or node configurations provided.")
-            return 0
-        else:
-            self.nodes = OPCUANodeContainer(_server = self.server, _namesspace_jsons = self.namespace_jsons, _nodes_json = self.node_jsons)
-            self.nodes.initialize_nodes()
-            self.nodes.initialize_namespaces()
-            await self.nodes.add_nodes()
-            self.nodes.create_node_tree()
+        await self.node_container.activate_namespaces()
+        await self.node_container.activate_nodes()
 
-
-
-
-
-
-
-
-
-
-
-
-            ####
-            ###
-            ###
-            ###
-            ###
-
-
-
-            #logger.info(f"Number of Nodes in Objects Folder: {len(server.get_objects_node().get_children())}")
+    def get_server_node_tree(self) -> dict:
+        return self.node_container.get_node_tree()

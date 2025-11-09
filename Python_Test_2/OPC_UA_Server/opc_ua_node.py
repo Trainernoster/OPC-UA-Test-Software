@@ -12,10 +12,10 @@ class OPCUANode:
         """
         self.node_json = _node_json
         self.node_header = None
+        self.server_assigned_header = None
         self.node = None
         self.set_Node_Header()
-        self.add_information()
-        
+        self.add_information()        
 
     def set_Node_Header(self) -> int:
         """ Create the OPC UA node header. """
@@ -49,5 +49,12 @@ class OPCUANode:
                     case "Methode":
                         ...
 
-    def set_Node(self, _node):
-        self.node = _node
+    def set_server_assigned_information(self, _server_node_idx: object, _server_nodeUri: str) -> int:
+        self.node = _server_node_idx
+        if self.node is not None:
+            self.server_assigned_header = {
+                "ns" : _server_node_idx.nodeid.NamespaceIndex,
+                "i": _server_node_idx.nodeid.Identifier,
+                "ns_consensus": None,
+                "i_consensus": None
+            }
