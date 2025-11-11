@@ -225,7 +225,7 @@ class OPCUANodeContainer:
                 
             # Check if parent is root
             if _node.node_header["parentNodeId"] == self.objects_node_information["i"] and _node.node_header["parentNodeNamespace"] == self.objects_node_information["ns"]:
-                await _start_node(_node= _node, _parent= self.objects_node, _parent_ns= _node.node_header["parentNodeNamespace"], _level= _level)
+                await _start_node(_node= _node, _parent= self.objects_node, _ns= ns, _level= _level)
                 #idx = await self.objects_node.add_object(_node.node_header["parentNodeNamespace"], _node.node_header["browseName"])
                 #_node.set_server_assigned_information(_server_node_id= idx, _server_nodeUri= _node.node_header["namespaceUri"], _server_node= idx)
             
@@ -234,20 +234,20 @@ class OPCUANodeContainer:
                     if parent.server_assigned_header is not None:
                         # Check if parent is found
                         if _node.node_header["parentNodeId"] == parent.node_header["i"]  and _node.node_header["parentNodeNamespace"] == parent.node_header["ns"]:
-                            await _start_node(_node= _node, _parent= parent.node, _parent_ns= _node.node_header["parentNodeNamespace"], _level= _level)
+                            await _start_node(_node= _node, _parent= parent.node, _ns= ns, _level= _level)
                             #idx = await parent.node.add_object(ns, _node.node_header["browseName"])
                             #_node.set_server_assigned_information(_server_node_id= idx, _server_nodeUri= _node.node_header["namespaceUri"], _server_node= idx)
             
             return 1
             
-        async def _start_node(_node: OPCUANode, _parent: object, _parent_ns: OPCUANode, _level: int):
+        async def _start_node(_node: OPCUANode, _parent: object, _ns: int, _level: int):
             idx = None
             match _node.node_header["nodeClass"]:
                 case "Object":
-                    idx = await _parent.add_object(_parent_ns, _node.node_header["browseName"])
+                    idx = await _parent.add_object(_ns, _node.node_header["browseName"])
                     #_node.set_server_assigned_information(_server_node_idx= idx, _server_nodeUri= _node.node_header["namespaceUri"])
                 case "Variable":
-                    idx = await _parent.add_variable(_parent_ns, _node.node_header["browseName"], _node.data["value"])
+                    idx = await _parent.add_variable(_ns, _node.node_header["browseName"], _node.data["value"])
 
                     access = 0x00
                     if _node.access["readable"] == True and _node.access["writeable"] == True:

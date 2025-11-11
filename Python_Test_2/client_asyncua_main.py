@@ -6,14 +6,15 @@ async def main():
     async with Client(url=url) as client:
         print(f"Connected to {url}")
         
-        # Get the node we want to read
-        var = client.get_node("ns=3;i=1")
+        var = client.get_node("ns=2;i=2")
         
         i = 1
         while True:
             i += 1
             value = await var.read_value()
-            print(f"Read MyVariable = {value}")
+            print(f"Temperature is = {value}")
+            print(f"Set temperature to {i}")
+            await var.write_value(i)
             await var.write_value(i)
             await asyncio.sleep(2)
 

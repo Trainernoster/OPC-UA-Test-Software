@@ -14,32 +14,32 @@ from Lib.dependencytree import dependencytree
 async def main():
     """ Main function to run the OPC UA server. """
 
+    # Create a OPCUAServer instance
     useSetupServerFile = True 
     opc_ua_server = OPCUAServer(_use_config_file = useSetupServerFile)    
 
     # Autostart the server
     await opc_ua_server.autostart()
+    print("Server started.")
 
-    #mode_tree = opc_ua_server.get_server_node_tree()
-    #dependencytree.dependencytree_print(_tree= mode_tree["node_tree"], _object_names= mode_tree["server_node_information"], _add_names= True, _names_only= True)
+    # Print the node tree that is active in the server
+    node_tree = opc_ua_server.get_server_node_tree()
+    dependencytree.dependencytree_print(_tree= node_tree["node_tree"], _object_names= node_tree["server_node_information"], _add_names= True, _names_only= True)
 
-    await opc_ua_server.stop_server()
+    # Main programm loop
+    print(" Press Ctrl+C to stop.")
+    try:
+        while True:
+            await asyncio.sleep(10)
 
-    # Iniziate the OPC-UA server
-    #await opc_ua_server.setup_server()
-    
+    except asyncio.CancelledError:
+        pass
+    except KeyboardInterrupt:
+        print("Stopping server...")
 
-    #await opc_ua_server.start_server()
-    #await opc_ua_server.setup_nodes()
-    #await opc_ua_server.add_device()
-
-    while True: #not get_choices_TureFalse(_question = "Write \"s\" to stop the server.", _delete_question = True, _choices = ["s"]):
-        await asyncio.sleep(10)
-
-    #print(await opc_ua_server.server.get_namespace_array())
-    #print(await opc_ua_server.server.get_namespace_index("http://mynodes.local"))
-    #print(await opc_ua_server.server.get_namespace_index("http://mynodes.global"))
-    #await opc_ua_server.stop_server()
+    finally:
+        await opc_ua_server.stop_server()
+        print(" Server stopped.")
     
 
 if __name__ == "__main__":
