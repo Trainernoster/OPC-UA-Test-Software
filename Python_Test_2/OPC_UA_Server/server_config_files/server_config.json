@@ -4,19 +4,59 @@
 
     "namespaces": [
         {
-            "namespaceIndex": 2,
-            "namespaceUri": "http://mynodes.local",
+            "namespaceIndex": 3,
+            "namespaceUri": "http://mynodes.clock",
             "description": "Namespace for custom object nodes"
         },
 
         {
             "namespaceIndex": 3,
+            "namespaceUri": "http://mynodes.local",
+            "description": "Namespace for custom object nodes"
+        },
+
+        {
+            "namespaceIndex": 4,
             "namespaceUri": "http://mynodes.global",
             "description": "Namespace for custom object nodes"
         }
     ],
 
     "nodes": [
+        {
+            "nodeHeader": {
+                "nodeId": {"ns": 2, "i": 1008},
+                "nodeClass": "Object",
+                "browseName": "Clock1",
+                "displayName": "Clock1",
+                "description": "Clock device",
+                "namespaceUri": "http://mynodes.clock",
+                "parentNodeId": {"ns": 0, "i": 85}
+            }
+        },
+        
+        {
+            "nodeHeader": {
+                "nodeId": {"ns": 2, "i": 1009},
+                "nodeClass": "Variable",
+                "browseName": "Time1",
+                "displayName": "Time1",
+                "description": "Time from Clock1",
+                "namespaceUri": "http://mynodes.clock",
+                "parentNodeId": {"ns": 2, "i": 1008}
+            },
+            "data": {
+                "value": "00:00",
+                "dataType": "string",
+                "valueRank": -1,
+                "arrayDimensions": "none"
+            },
+            "access": {
+                "readable": true,
+                "writeable": true
+            }
+        },
+
         {
             "nodeHeader": {
                 "nodeId": {"ns": 3, "i": 1001},
