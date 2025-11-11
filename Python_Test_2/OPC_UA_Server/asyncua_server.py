@@ -104,21 +104,21 @@ class OPCUAServer:
 
         # Check if server exists:
         if not self.server:
-            self.logger.info("OPC-UA server is created by autostart ...")
             await self.init_server()
+            self.logger.info("OPC-UA server is created by autostart ...")
         
         # Check if server is running:
         if not self._running:
-            self.logger.info("OPC-UA server is started by autostart ...")
             await self.start_server()
-
+            self.logger.info("OPC-UA server is started by autostart ...")
+        """
         # Check if node container is initialised
         if not self.node_container:
             self.logger.info("OPC-UA nodes are created by autostart ...")
             await self.init_node_container()
             self.load_namespaces_and_nodes_to_container()
             await self.activate_namespaces_and_nodes_on_server()
-
+        """
 
         self.logger.info("-------------------- OPC-UA server has autostarted --------------------")
         return 1
