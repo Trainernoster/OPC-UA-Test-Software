@@ -1,6 +1,5 @@
 used packages:
 o asyncua
-o nympy
 
 Python_Test_2/
 │
