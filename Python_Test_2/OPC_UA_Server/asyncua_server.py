@@ -10,6 +10,12 @@ from asyncua import Server
 from .asyncua_node_container import OPCUANodeContainer
 
 class OPCUAServer:
+    """
+    Asynchronous OPC UA server wrapper.
+
+    Provides configuration-driven initialization, namespace and node activation,
+    and lifecycle management (start/stop/autostart) for an asyncua-based OPC UA server.
+    """
 
     def __init__(
             self,
@@ -23,25 +29,23 @@ class OPCUAServer:
             _use_config_file: bool = None,
             _logger_path: str = None,
         ) -> None:
-        """ Initialise OPC UA server class with given parameters or configuration file. """
-
         """
-            Attributes:                 
-                self                    obj                     self          
-                _server_name            str                     server name
-                _endpoint               str                     holds endpoint string
-                _namespace_jsons        list                    contains namespace jsons
-                _node_jsons             list                    contians node jsons
-                _nodes                  OPCUANodeContainer      container for node local objects
-                _server_config_path     str                     path to the config file
-                _server_config_file     str                     name of the config file
-                _use_config_file        bool                    if Ture use a config file for the server
-                _logger_path            str                     path to log file folder
-            
-            Return value:
-                None 
-        """
+        Initialize the OPC UA server object.
 
+        Args:
+            _server_name: Human-readable server name.
+            _endpoint: Endpoint URL (opc.tcp://host:port/…).
+            _namespace_jsons: Optional list of namespace configuration JSONs.
+            _node_jsons: Optional list of node configuration JSONs.
+            _node_container: Existing node container, if already created.
+            _server_config_path: Directory containing configuration files.
+            _server_config_file: Configuration file name.
+            _use_config_file: If True, load settings from the config file.
+            _logger_path: Path to store log files.
+
+        Returns:
+            None
+        """
         self.server_name: str = _server_name                        # Server name
         self.endpoint: str = _endpoint                              # Server endpoint URL
         self.namespace_jsons: list = _namespace_jsons               # List of namespace configuration json
@@ -52,14 +56,15 @@ class OPCUAServer:
         self.use_config_file: bool = _use_config_file               # Whether to use configuration file or preconfigured parameters
         self.module_path = Path(__file__).parent                    # Get module path
 
-        
+        # ------------------------------------------------------------------ #
+        # Logging setup
+        # ------------------------------------------------------------------ #        
         # Logger Path
         self.logger_path = _logger_path
         if self.logger_path is None:
             self.logger_path = os.path.join(self.module_path, "logs")   # Default logger path
         
         # Logger file
-        self.logger = logging.getLogger("Server_logger")    # Logger
         os.makedirs(self.logger_path, exist_ok=True)
         self.current_logger_file = (os.path.join(self.logger_path, f"server_log_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"))
         
@@ -90,18 +95,23 @@ class OPCUAServer:
         self._server_task: asyncio.Task | None = None   # Background server task
 
         self.logger.info("-------------------- OPC-UA server class is created --------------------")
+    # ---------------------------------------------------------------------- #
+    # Lifecycle management
+    # ---------------------------------------------------------------------- #
 
     async def autostart(self) -> int:
-        """ Autostart and initialis OPC-UA server """
-
         """
-            Attributes:             
-                self                obj     self
-                
-            Return value:
-                int 
-        """
+        Automatically initialize, start, and populate the OPC UA server.
 
+        Steps:
+            1. Initialize the server if not already done.
+            2. Start the server.
+            3. Create a node container if missing.
+            4. Load and activate namespaces and nodes.
+
+        Returns:
+            int
+        """
         # Check if server exists:
         if not self.server:
             await self.init_server()
@@ -124,14 +134,11 @@ class OPCUAServer:
         return 1
 
     async def init_server(self) -> int:
-        """ Initialise OPC UA server instance. """
-        
         """
-            Attributes:             
-                self                obj     self
-                
-            Return value:
-                int 
+        Create and configure the underlying asyncua.Server instance.
+
+        Returns:
+            int
         """
 
         self.server = Server()
@@ -143,16 +150,12 @@ class OPCUAServer:
         return 1
 
     async def start_server(self) -> int:
-        """ Start OPC UA server. """
-        
         """
-            Attributes:             
-                self                obj     self
-                
-            Return value:
-                int 
-        """
+        Start the OPC UA server asynchronously.
 
+        Returns:
+            int
+        """
         if self.server is None:
             self.logger.warning("Trying to start a not initialised server. Call init_server() first.")
             return -1
@@ -173,16 +176,12 @@ class OPCUAServer:
         return 1
     
     async def stop_server(self) -> int:
-        """ Stop OPC UA server. """
-        
         """
-            Attributes:             
-                self                obj     self
-                
-            Return value:
-                int 
-        """
+        Stop the OPC UA server and release resources.
 
+        Returns:
+            int
+        """
         if self.server is None or not self._running:
             self.logger.warning("Trying to stop a not running server. Abort stopping server.")
             return -1
@@ -191,37 +190,40 @@ class OPCUAServer:
         await self.server.stop()
         self.logger.info("-------------------- OPC-UA server stoped --------------------")
         return 1
+    
+    # ---------------------------------------------------------------------- #
+    # Node management
+    # ---------------------------------------------------------------------- #
 
     async def init_node_container(self) -> int:
-        """ Initialise local nodes. """
-        
         """
-            Attributes:             
-                self                obj     self
-                
-            Return value:
-                int 
+        Create a local node container bound to this server.
+
+        Returns:
+            int
         """
 
         if self.node_container is not None :
             self.logger.warning("Trying to initialise a node container, but one is still there. Abort initialising node container.")
             return -1
         
-        self.node_container = OPCUANodeContainer(_server= self.server, _namespace_jsons= self.namespace_jsons, _node_jsons= self.node_jsons, _logger= self.logger, _logger_active= True)
+        self.node_container = OPCUANodeContainer(
+            _server= self.server,
+            _namespace_jsons= self.namespace_jsons,
+            _node_jsons= self.node_jsons,
+            _logger= self.logger,
+            _logger_active= True
+        )
         self.logger.info("-------------------- OPC-UA node container initialised --------------------")
         return 1
 
     def load_namespaces_and_nodes_to_container(self) -> int:
-        """ Initialise local nodes. """
-        
         """
-            Attributes:             
-                self                obj     self
-                
-            Return value:
-                int 
-        """
+        Load namespace and node definitions into the node container.
 
+        Returns:
+            int
+        """
         if not self.node_container:
             self.logger.warning("Trying to load namespaces and nodes to a container, but no exists. Abort adding namespaces and nodes.")
             return -1
@@ -230,22 +232,25 @@ class OPCUAServer:
         return 1
  
     async def activate_namespaces_and_nodes_on_server(self) -> int:
-        """ Activate loaded namespaces and nodes to server. """
-        
         """
-            Attributes:             
-                self                obj     self
-                
-            Return value:
-                int 
-        """
+        Register all namespaces and nodes with the running server.
 
+        Returns:
+            int
+        """
         if not self.node_container:
             self.logger.warning("Trying to activate namespaces and nodes on server, but no container exists. Abort activating namespaces and nodes.")
             return -1
         
         await self.node_container.activate_namespaces()
         await self.node_container.activate_nodes()
+        return 1
 
     def get_server_node_tree(self) -> dict:
+        """
+        Return the current server node tree from the container.
+
+        Returns:
+            dict: Hierarchical node information.
+        """
         return self.node_container.get_node_tree()
