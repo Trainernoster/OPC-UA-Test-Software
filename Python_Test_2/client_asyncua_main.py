@@ -8,13 +8,12 @@ async def main():
         
         var = client.get_node("ns=2;i=2")
         
-        i = 1
+        i = 0
         while True:
             i += 1
             value = await var.read_value()
             print(f"Temperature is = {value}")
             print(f"Set temperature to {i}")
-            await var.write_value(i)
             await var.write_value(i)
             await asyncio.sleep(2)
 

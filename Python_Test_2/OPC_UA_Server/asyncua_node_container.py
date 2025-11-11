@@ -251,17 +251,16 @@ class OPCUANodeContainer:
 
                     access = 0x00
                     if _node.access["readable"] == True and _node.access["writeable"] == True:
-                        access = ua.AccessLevel.CurrentRead | ua.AccessLevel.CurrentWrite
+                        #access = ua.AccessLevel.CurrentRead | ua.AccessLevel.CurrentWrite
+                        access = 0x03
                     elif _node.access["readable"] == True:
-                        access = ua.AccessLevel.CurrentRead 
+                        #access = ua.AccessLevel.CurrentRead 
+                        access = 0x01
                     elif _node.access["writeable"] == True:
-                        access =  ua.AccessLevel.CurrentWrite
+                        #access =  ua.AccessLevel.CurrentWrite
+                        access = 0x02
                     await idx.write_attribute(
                         ua.AttributeIds.AccessLevel,
-                        ua.DataValue(ua.Variant(access, ua.VariantType.Byte))
-                    )
-                    await idx.write_attribute(
-                        ua.AttributeIds.UserAccessLevel,
                         ua.DataValue(ua.Variant(access, ua.VariantType.Byte))
                     )
                 case "Methode":
@@ -296,6 +295,7 @@ class OPCUANodeContainer:
             level = 1
             nodes_copy = self.nodes
             self.server_node_tree.append([85])
+            self.server_node_information.append([85, ("browseName: " + "root object" + ", ns: " + "0" + ", i: " + "85" + ", nodeClass: " + "Objects")])
             self.server_node_names.append([85, "root object"])
             await _iterate_node(_nodes= nodes_copy, _level = level, _root= self.objects_node)
             
