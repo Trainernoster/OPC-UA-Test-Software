@@ -19,7 +19,7 @@
     "nodes": [
         {
             "nodeHeader": {
-                "nodeId": {"ns": 2, "i": 1001},
+                "nodeId": {"ns": 3, "i": 1001},
                 "nodeClass": "Object",
                 "browseName": "Device1",
                 "displayName": "Device1",
@@ -31,13 +31,13 @@
 
         {
             "nodeHeader": {
-                "nodeId": {"ns": 2, "i": 1003},
+                "nodeId": {"ns": 3, "i": 1003},
                 "nodeClass": "Variable",
                 "browseName": "Temperature",
                 "displayName": "Temp1",
                 "description": "A temperature sendor device",
                 "namespaceUri": "http://mynodes.local",
-                "parentNodeId": {"ns": 2, "i": 1001}
+                "parentNodeId": {"ns": 3, "i": 1001}
             },
             "data": {
                 "value": 1,
@@ -53,13 +53,13 @@
 
         {
             "nodeHeader": {
-                "nodeId": {"ns": 2, "i": 1004},
+                "nodeId": {"ns": 3, "i": 1004},
                 "nodeClass": "Variable",
                 "browseName": "Pressure",
                 "displayName": "Press1",
                 "description": "A pressure sendor device",
                 "namespaceUri": "http://mynodes.local",
-                "parentNodeId": {"ns": 2, "i": 1001}
+                "parentNodeId": {"ns": 3, "i": 1001}
             },
             "data": {
                 "value": 1,
@@ -75,19 +75,19 @@
 
         {
             "nodeHeader": {
-                "nodeId": {"ns": 2, "i": 1005},
+                "nodeId": {"ns": 3, "i": 1005},
                 "nodeClass": "Methode",
                 "browseName": "StartMotor",
                 "displayName": "StartMot",
                 "description": "A motor start device",
                 "namespaceUri": "http://mynodes.local",
-                "parentNodeId": {"ns": 2, "i": 1001}
+                "parentNodeId": {"ns": 3, "i": 1001}
             }
         },
 
         {
             "nodeHeader": {
-                "nodeId": {"ns": 3, "i": 1002},
+                "nodeId": {"ns": 4, "i": 1002},
                 "nodeClass": "Object",
                 "browseName": "Device1",
                 "displayName": "Device1",
@@ -99,13 +99,13 @@
 
         {
             "nodeHeader": {
-                "nodeId": {"ns": 3, "i": 1006},
+                "nodeId": {"ns": 4, "i": 1006},
                 "nodeClass": "Variable",
                 "browseName": "Speed",
                 "displayName": "V1",
                 "description": "A speed sendor device",
                 "namespaceUri": "http://mynodes.global",
-                "parentNodeId": {"ns": 3, "i": 1002}
+                "parentNodeId": {"ns": 4, "i": 1002}
             },
             "data": {
                 "value": 1,
@@ -121,13 +121,13 @@
 
         {
             "nodeHeader": {
-                "nodeId": {"ns": 3, "i": 1007},
+                "nodeId": {"ns": 4, "i": 1007},
                 "nodeClass": "Methode",
                 "browseName": "StopMotor",
                 "displayName": "StopMot",
                 "description": "A motor stop device",
                 "namespaceUri": "http://mynodes.global",
-                "parentNodeId": {"ns": 3, "i": 1002}
+                "parentNodeId": {"ns": 4, "i": 1002}
             }
         }
 
