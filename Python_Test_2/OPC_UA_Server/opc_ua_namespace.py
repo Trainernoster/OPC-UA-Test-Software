@@ -6,7 +6,7 @@ class OPCUANamespace:
             Attributes:             
                 self                obj     self
                 _namespace_json     list    contains namespace information
-                
+            
             Return value:
                 int 
         """
@@ -46,7 +46,7 @@ class OPCUANamespace:
         self.server_assigned_header = {
             "ns" : _server_namespace_id,
             "namespaceUri": _server_namespaceUri,
-            "id_consensus": None
+            "ns_consensus": None
         }
 
         if self.server_assigned_header["ns"] == self.namespace_header["ns"]:
