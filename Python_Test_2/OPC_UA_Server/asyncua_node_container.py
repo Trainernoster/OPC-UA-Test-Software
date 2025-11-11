@@ -253,16 +253,22 @@ class OPCUANodeContainer:
                     if _node.access["readable"] == True and _node.access["writeable"] == True:
                         #access = ua.AccessLevel.CurrentRead | ua.AccessLevel.CurrentWrite
                         access = 0x03
+                        """ Set variable writeable() """
+                        await idx.set_writable()
                     elif _node.access["readable"] == True:
                         #access = ua.AccessLevel.CurrentRead 
                         access = 0x01
+                        """ Readable is set by default """
                     elif _node.access["writeable"] == True:
                         #access =  ua.AccessLevel.CurrentWrite
                         access = 0x02
-                    await idx.write_attribute(
-                        ua.AttributeIds.AccessLevel,
-                        ua.DataValue(ua.Variant(access, ua.VariantType.Byte))
-                    )
+                        """ Set variable writeable() """
+                        await idx.set_writable()
+                    """ Bit mask is not implemented in asyncua, Hence writeonly does not work"""
+                    #await idx.write_attribute(
+                    #    ua.AttributeIds.AccessLevel,
+                    #    ua.DataValue(ua.Variant(access, ua.VariantType.Byte))
+                    #)
                 case "Methode":
                     
                     return -1

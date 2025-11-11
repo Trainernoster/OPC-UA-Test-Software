@@ -1,5 +1,5 @@
 import asyncio
-from asyncua import Client
+from asyncua import Client, ua
 
 async def main():
     url = "opc.tcp://192.168.50.52:4840/freeopcua/server/"
@@ -7,6 +7,8 @@ async def main():
         print(f"Connected to {url}")
         
         var = client.get_node("ns=2;i=2")
+        access_level = await var.read_attribute(ua.AttributeIds.UserAccessLevel)
+        print("Raw AccessLevel bitmask:", access_level)
         
         i = 0
         while True:
