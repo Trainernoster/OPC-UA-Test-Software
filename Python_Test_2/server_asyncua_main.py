@@ -27,7 +27,7 @@ async def main():
     dependencytree.dependencytree_print(_tree= node_tree["node_tree"], _object_names= node_tree["server_node_information"], _add_names= True, _names_only= True)
 
     # Main programm loop
-    print(" Press Ctrl+C to stop.")
+    print("Press Ctrl+C to stop.")
     try:
         while True:
             await asyncio.sleep(10)
@@ -39,7 +39,7 @@ async def main():
 
     finally:
         await opc_ua_server.stop_server()
-        print(" Server stopped.")
+        print("Server stopped.")
     
 
 if __name__ == "__main__":

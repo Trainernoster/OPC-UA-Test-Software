@@ -1,23 +1,20 @@
 import asyncio
 from asyncua import Client, ua
+from OPC_UA_Client import OPCUAClient
 
 async def main():
-    url = "opc.tcp://192.168.50.52:4840/freeopcua/server/"
-    async with Client(url=url) as client:
-        print(f"Connected to {url}")
-        
-        var = client.get_node("ns=2;i=2")
-        access_level = await var.read_attribute(ua.AttributeIds.UserAccessLevel)
-        print("Raw AccessLevel bitmask:", access_level)
-        
-        i = 0
-        while True:
-            i += 1
-            value = await var.read_value()
-            print(f"Temperature is = {value}")
-            print(f"Set temperature to {i}")
-            await var.write_value(i)
-            await asyncio.sleep(2)
+    
+    # Create a OPCUAClient instance
+    useSetupClientFile = True 
+    opc_ua_client = OPCUAClient(_use_config_file = useSetupClientFile)
+
+    await opc_ua_client.start_Client()
+
+    clock = opc_ua_client.get_node(_browse_name= "Time1", _namespace_index= 2, _identifier= 2)
+    
+    print(await opc_ua_client.get_value(_node= clock))
+    await opc_ua_client.set_value(_node= clock, _value= "12:00")
+    print(await opc_ua_client.get_value(_node= clock))
 
 if __name__ == "__main__":
     asyncio.run(main())
