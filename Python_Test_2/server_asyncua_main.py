@@ -20,8 +20,8 @@ async def main():
     # Autostart the server
     await opc_ua_server.autostart()
 
-    mode_tree = opc_ua_server.get_server_node_tree()
-    dependencytree.dependencytree_print(_tree= mode_tree["node_tree"], _object_names= mode_tree["server_node_information"], _add_names= True, _names_only= True)
+    #mode_tree = opc_ua_server.get_server_node_tree()
+    #dependencytree.dependencytree_print(_tree= mode_tree["node_tree"], _object_names= mode_tree["server_node_information"], _add_names= True, _names_only= True)
 
     await opc_ua_server.stop_server()
 
