@@ -20,11 +20,24 @@ async def main():
     print("Server started at opc.tcp://localhost:4840/freeopcua/server/")
     print("Variable: MyObject.Temperature")
 
-    async with server:
+    await server.start()
+    print("✅ OPC UA Server started at opc.tcp://0.0.0.0:4840/freeopcua/server/")
+    print("   Press Ctrl+C to stop.")
+
+    try:
         while True:
-            temp_value = await temp_var.read_value()
-            print(f"Current temperature: {temp_value:.2f}")
+            temp = await temp_var.read_value()
+            print(f"Current temperature: {temp:.2f}")
             await asyncio.sleep(3)
+
+    except asyncio.CancelledError:
+        pass
+    except KeyboardInterrupt:
+        print("Stopping server...")
+
+    finally:
+        await server.stop()
+        print(" Server stopped cleanly.")
 
 
 if __name__ == "__main__":
