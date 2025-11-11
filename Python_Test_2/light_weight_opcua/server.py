@@ -21,8 +21,8 @@ async def main():
     print("Variable: MyObject.Temperature")
 
     await server.start()
-    print("✅ OPC UA Server started at opc.tcp://0.0.0.0:4840/freeopcua/server/")
-    print("   Press Ctrl+C to stop.")
+    print(" OPC UA Server started at opc.tcp://0.0.0.0:4840/freeopcua/server/")
+    print(" Press Ctrl+C to stop.")
 
     try:
         while True:
