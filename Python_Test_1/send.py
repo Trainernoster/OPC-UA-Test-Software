@@ -33,7 +33,7 @@ try:
         sys.stdout.write("\033[F")                  # Set courser to message top
 
 except KeyboardInterrupt:
-    print("Stopping server...")
+    print("Stopping send.")
 
 
 connection.close()
