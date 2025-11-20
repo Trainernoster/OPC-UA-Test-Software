@@ -28,7 +28,7 @@ def main():
     run("sudo apt update")
     run("sudo apt upgrade -y")
     run("sudo apt full-upgrade -y")
-    run("sudo apt modernize-sources")
+    run("sudo apt modernize-sources -y")
 
     # Change bak file
     if os.path.isfile(SOURCE_LIST_FILE):
