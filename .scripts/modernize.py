@@ -52,7 +52,6 @@ def main():
         print(f"File does not exist: {SOURCE_LIST_FILE}")
 
     # Update .sources
-
     if os.path.isfile(SOURCE_SOURCE_FILE):
 
         with open(SOURCE_SOURCE_FILE, "r", encoding="utf-8") as f:
@@ -61,8 +60,6 @@ def main():
         if not lines:
             ...
         else:
-            for line in lines:
-                print(line)
             new_lines = []
             new_lines.append("# Debian Mirror")
             new_lines.append(lines[1])
@@ -72,7 +69,8 @@ def main():
             new_lines.append(lines[1] + " /usr/share/keyrings/debian/-archive-keyring.gpg")
 
             with open(SOURCE_SOURCE_FILE_NEW, "w", encoding="utf-8") as f:
-                f.write(modified_line)
+                for line in new_lines:
+                    f.write(line)
     else:
         print(f"File does not exist: {SOURCE_LIST_FILE}")
 
