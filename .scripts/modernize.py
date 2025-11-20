@@ -13,7 +13,7 @@ in the command line or run it with python.
 
 SOURCE_LIST_FILE = "/etc/apt/sources.list.bak"
 SOURCE_SOURCE_FILE = "/etc/apt/sources.list.d/moved-from-main.sources"
-SOURCE_SOURCE_FILE_NEW = "/etc/apt/sources.list.d/debian_mirror.sources"
+SOURCE_SOURCE_FILE_NEW = "/etc/apt/sources.list.d/debian-mirror.sources"
 
 def run(cmd):
     """Run shell command and exit if it fails."""
