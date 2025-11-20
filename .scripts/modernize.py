@@ -61,12 +61,12 @@ def main():
             ...
         else:
             new_lines = []
-            new_lines.append("# Debian Mirror")
+            new_lines.append("# Debian Mirror\n")
             new_lines.append(lines[1])
             new_lines.append(lines[2])
             new_lines.append(lines[3])
             new_lines.append(lines[4])
-            new_lines.append(lines[1] + " /usr/share/keyrings/debian/-archive-keyring.gpg")
+            new_lines.append(lines[5] + " /usr/share/keyrings/debian/-archive-keyring.gpg")
 
             with open(SOURCE_SOURCE_FILE_NEW, "w", encoding="utf-8") as f:
                 for line in new_lines:
