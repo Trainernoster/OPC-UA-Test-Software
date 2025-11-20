@@ -12,7 +12,7 @@ in the command line or run it with python.
 """
 
 SOURCE_LIST_FILE = "/etc/apt/sources.list.bak"
-SOURCE_SOURCE_FILE = "/etc/apt/sources.list.d/moved-from-main.sources"
+SOURCE_SOURCE_FILE = "/etc/apt/sources.list.d/debian.sources"
 SOURCE_SOURCE_FILE_NEW = "/etc/apt/sources.list.d/debian-mirror.sources"
 
 def run(cmd):
@@ -61,7 +61,7 @@ def main():
             ...
         else:
             new_lines = []
-            new_lines.append("# Debian mirror")
+            new_lines.append("# Debian mirror\n")
             new_lines.append(lines[1])
             new_lines.append(lines[2])
             new_lines.append(lines[3])
