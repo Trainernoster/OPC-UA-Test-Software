@@ -28,7 +28,7 @@ def main():
     #run("sudo apt update")
     #run("sudo apt upgrade -y")
     #run("sudo apt full-upgrade -y")
-    run("sudo apt modernize-sources")
+    #run("sudo apt modernize-sources")
 
     # Change bak file
     if os.path.isfile(SOURCE_LIST_FILE):
@@ -61,6 +61,8 @@ def main():
         if not lines:
             ...
         else:
+            for line in lines:
+                print(line)
             new_lines = []
             new_lines.append("# Debian Mirror")
             new_lines.append(lines[1])
