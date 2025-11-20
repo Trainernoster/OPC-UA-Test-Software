@@ -61,7 +61,7 @@ def main():
             ...
         else:
             new_lines = []
-            new_lines.append("# Debian mirror\n")
+            new_lines.append("# Debian mirror")
             new_lines.append(lines[1])
             new_lines.append(lines[2])
             new_lines.append(lines[3])
