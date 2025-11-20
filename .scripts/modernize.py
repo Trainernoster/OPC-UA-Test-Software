@@ -25,10 +25,10 @@ def run(cmd):
 
 def main():
     # update and upgrade
-    #run("sudo apt update")
-    #run("sudo apt upgrade -y")
-    #run("sudo apt full-upgrade -y")
-    #run("sudo apt modernize-sources")
+    run("sudo apt update")
+    run("sudo apt upgrade -y")
+    run("sudo apt full-upgrade -y")
+    run("sudo apt modernize-sources")
 
     # Change bak file
     if os.path.isfile(SOURCE_LIST_FILE):
@@ -66,11 +66,12 @@ def main():
             new_lines.append(lines[2])
             new_lines.append(lines[3])
             new_lines.append(lines[4])
-            new_lines.append(lines[5] + " /usr/share/keyrings/debian/-archive-keyring.gpg")
+            new_lines.append("Signed-By: /usr/share/keyrings/debian/-archive-keyring.gpg")
 
             with open(SOURCE_SOURCE_FILE_NEW, "w", encoding="utf-8") as f:
                 for line in new_lines:
                     f.write(line)
+            os.remove(SOURCE_SOURCE_FILE)
     else:
         print(f"File does not exist: {SOURCE_LIST_FILE}")
 
