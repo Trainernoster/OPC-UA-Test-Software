@@ -28,6 +28,9 @@ def main():
     # update and upgrade
     run("sudo apt update")
     run("sudo apt upgrade -y")
+    run("sudo apt full-upgrade -y")
+    run("sudo apt modernize-sources")
+    run("cd /etc/apt/sources.list.d")
 
     print("Modernization completed successfully!")
 
