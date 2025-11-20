@@ -11,7 +11,7 @@ To make the script executable run:
 in the command line or run it with python.
 """
 
-SOURCE_LIST_FILE = "/etc/apt/sources.list.d/modernize.list" 
+SOURCE_LIST_FILE = "/etc/apt/sources.list" 
 
 def run(cmd):
     """Run shell command and exit if it fails."""
