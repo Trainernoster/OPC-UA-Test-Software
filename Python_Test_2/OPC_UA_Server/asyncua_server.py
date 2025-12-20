@@ -254,3 +254,58 @@ class OPCUAServer:
             dict: Hierarchical node information.
         """
         return self.node_container.get_node_tree()
+    
+    async def export_server_model(self, savefile_path: str = None, export_values: bool = False) -> int:
+        """
+        Export the current OPC UA server model (all nodes) to an XML file.
+
+        Args:
+            savefile_path: File to write the XML model.
+            export_values: If True, include variable values in exported XML.
+
+        Returns:
+            1 on success, -1 on failure.
+        """
+        if not self.server or not self._running:
+            self.logger.error("Server is not running, cannot export model.")
+            return -1
+
+        nodes_to_export = []
+
+        async def collect_nodes(node, visited=None):
+            if visited is None:
+                visited = set()
+
+            nodeid = node.nodeid.to_string()
+            if nodeid in visited:
+                return
+            visited.add(nodeid)
+
+            nodes_to_export.append(node)
+
+            try:
+                children = await node.get_children()
+                for child in children:
+                    await collect_nodes(child, visited)
+            except Exception as e:
+                self.logger.debug(f"Error browsing {nodeid}: {e}")
+
+        await collect_nodes(self.server.nodes.objects)
+
+        try:
+            if savefile_path == None:
+                designmodel_folder = os.path.join(
+                    os.path.dirname(os.path.abspath(__file__)),
+                    "DesignModel"
+                )
+                os.makedirs(designmodel_folder, exist_ok=True)
+                savefile_path = os.path.join(
+                    designmodel_folder,
+                    "Server_DesignModel.xml"
+                )
+            await self.server.export_xml(nodes_to_export, savefile_path, export_values)
+            self.logger.info(f"Server model exported to {savefile_path}")
+            return 1
+        except Exception as e:
+            self.logger.error(f"Failed to export server model: {e}")
+            return -1

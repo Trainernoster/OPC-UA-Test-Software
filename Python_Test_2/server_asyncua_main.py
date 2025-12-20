@@ -26,6 +26,9 @@ async def main():
     node_tree = opc_ua_server.get_server_node_tree()
     dependencytree.dependencytree_print(_tree= node_tree["node_tree"], _object_names= node_tree["server_node_information"], _add_names= True, _names_only= True)
 
+    # Export current server model
+    await opc_ua_server.export_server_model()
+
     # Main programm loop
     print("Press Ctrl+C to stop.")
     try:
