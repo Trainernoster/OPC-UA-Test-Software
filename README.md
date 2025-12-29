@@ -10,17 +10,60 @@ All third-party software remains licensed under its respective license.
 Copies of the LGPL-3.0 and BSD 3-Clause license texts are included with this project.  
 If modified versions of LGPL-licensed components are distributed, the corresponding source code must be made available in accordance with the LGPL.
 
-
 ## OPC-UA-Test-Software
 This repository contains test software for OPC-UA
 
 OPC-UA-TEST-SOFTWARE/
 |
-├── Python_Test_1/      # Testing PubSub with RabbitMQ server
-│   ├── recieve.py      # AMQP Subscriber
-│   └── send.py         # AMQP Publisher
+├── Python_Test_1/                         # PubSub testing with RabbitMQ
+│   ├── recieve.py                         # AMQP subscriber implementation
+│   └── send.py                            # AMQP publisher implementation
 |
-├── Python_Test_2/      # Testing Server-CLient with OPC-UA architecture
-│   ├── ...
-│   └── ...
-
+├── Python_Test_2/                         # OPC UA server–client test framework
+│   ├── functions/                         # Shared helper and user interaction logic
+│   │   ├── __init__.py                    # Python package marker
+│   │   ├── _test_userChoice.py            # Tests for user choice handling
+│   │   └── userChoice.py                  # User input / selection utilities
+│   |
+│   ├── Lib/                               # Shared libraries
+│   │   └── dependencytree/                # Dependency tree generation utilities
+│   │       ├── __init__.py                # Python package marker
+│   │       ├── _test_dt.py                # Dependency tree test module
+│   │       └── dependencytree.py          # Dependency tree implementation
+│   |
+│   ├── light_weight_opcua/                # Minimal OPC UA client/server examples
+│   │   ├── client.py                      # Lightweight OPC UA client
+│   │   └── server.py                      # Lightweight OPC UA server
+│   |
+│   ├── OPC_UA_Client/                     # Full OPC UA client implementation
+│   │   ├── client_config_files/           # Client configuration files
+│   │   │   └── client_condif.json         # OPC UA client configuration
+│   │   ├── Lib/                           # Client-specific libraries
+│   │   │   └── dependencytree/            # Client dependency tree utilities
+│   │   │       ├── __init__.py            # Python package marker
+│   │   │       ├── _test_dt.py            # Dependency tree test module
+│   │   │       └── dependencytree.py      # Dependency tree implementation
+│   │   ├── __init__.py                    # Python package marker
+│   │   └── asyncua_client.py              # asyncua-based OPC UA client
+│   |
+│   ├── OPC_UA_Server/                     # Full OPC UA server implementation
+│   │   ├── design_models/                 # OPC UA information model definitions
+│   │   │   └── server_design_model.xml    # Server node design model
+│   │   ├── logs/                          # Runtime server logs
+│   │   ├── server_config_files/           # Server configuration files
+│   │   │   ├── __server_config.json       # Default / template server config
+│   │   │   └── server_config.json         # Active server configuration
+│   │   ├── __init__.py                    # Python package marker
+│   │   ├── asyncua_node_container.py      # Node container abstraction
+│   │   ├── asyncua_server.py              # asyncua-based OPC UA server
+│   │   ├── opc_ua_namespace.py            # OPC UA namespace handling
+│   │   └── opc_ua_node.py                 # OPC UA node definitions
+│   |
+│   ├── client_asyncua_main.py             # Main entry point for OPC UA client
+│   ├── clock_get.py                       # Read time from OPC UA server
+│   ├── clock_set.py                       # Write time to OPC UA server
+│   └── server_asyncua_main.py             # Main entry point for OPC UA server
+|
+├── Test_3/                                # Additional / experimental tests
+├── .gitignore                             # Git ignore rules
+└── README.md                              # Project documentation
