@@ -13,6 +13,7 @@ If modified versions of LGPL-licensed components are distributed, the correspond
 ## OPC-UA-Test-SoftwareOPC-UA-Test-Software
 This repository contains test software for OPC-UA
 
+```
 OPC-UA-TEST-SOFTWARE/
 ├── Python_Test_1/                      # PubSub testing with RabbitMQ
 │   ├── recieve.py                      # AMQP subscriber implementation
@@ -59,3 +60,4 @@ OPC-UA-TEST-SOFTWARE/
 ├── Test_3/                             # Additional / experimental tests
 ├── .gitignore                          # Git ignore rules
 └── README.md                           # Project documentation
+```
