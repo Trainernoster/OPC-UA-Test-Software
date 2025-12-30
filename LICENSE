@@ -5,7 +5,23 @@ This project uses the following third-party libraries:
 - **asyncua** — GNU Lesser General Public License v3.0 or later (LGPL-3.0+)
 - **pika** — BSD 3-Clause License
 - **lxml** — BSD 3-Clause License
+- **open62541** — Mozilla Public License Version 2.0 (MPL-2.0)
 
 All third-party software remains licensed under its respective license.  
-Copies of the LGPL-3.0 and BSD 3-Clause license texts are included with this project.  
-If modified versions of LGPL-licensed components are distributed, the corresponding source code must be made available in accordance with the LGPL.
+Copies of the LGPL-3.0, BSD 3-Clause, and MPL-2.0 license texts are included with this project in `doc/licenses/`.
+If modified versions of LGPL-licensed or MPL-licensed components are distributed, the corresponding source code must be made available in accordance with their licenses.
+
+
+## LGPL
+Official Website: https://www.gnu.org/licenses/lgpl-3.0.en.html
+- **asyncua** no text available
+
+## BSD 3-Clause 
+Official Website: https://spdx.org/licenses/BSD-3-Clause.html
+- **pika** Copyright (c) 2009-2021, Tony Garnock-Jones, Gavin M. Roy, Pivotal Software, Inc and others.
+All rights reserved.
+- **lxml** Copyright (c) 2004 Infrae. All rights reserved.
+
+## MPL
+Official Website: https://www.mozilla.org/en-US/MPL/2.0/
+- **open62541** no text availabe
