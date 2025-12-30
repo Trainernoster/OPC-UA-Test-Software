@@ -1,0 +1,40 @@
+{
+    "projects": [
+        {
+            "name": "CPP",
+            "use_relative_pathes": true,
+            "src_folder": "/../CPP/src",
+            "build_folder": "/../CPP/build",
+            "executable": "Server.exe",
+            "cmake_init_flags": null,
+            "cmake_build_flags": null,
+            "full_init": true,
+            "just_init" : false,
+            "build_and_run": false
+        },
+        {
+            "name": "UDP",
+            "use_relative_pathes": true,
+            "src_folder": "../UDP_PubSub/src",
+            "build_folder": "../UDP_PubSub/build",
+            "executable": "Publisher.exe",
+            "cmake_init_flags": "-DUA_ENABLE_PUBSUB=ON -DBUILD_SHARED_LIBS=OFF",
+            "cmake_build_flags": "--config Release",
+            "full_init": true,
+            "just_init" : false,
+            "build_and_run": false
+        },
+        {
+            "name": "PythonCPP",
+            "use_relative_pathes": true,
+            "src_folder": "../PythonCPP/CPP/src",
+            "build_folder": "../PythonCPP/CPP/build",
+            "executable": "Test.exe",
+            "cmake_init_flags": null,
+            "cmake_build_flags": null,
+            "full_init": true,
+            "just_init" : false,
+            "build_and_run": false
+        }
+    ]
+}

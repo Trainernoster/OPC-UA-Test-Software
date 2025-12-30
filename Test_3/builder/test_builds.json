@@ -1,0 +1,10 @@
+{
+    "projects": [
+        {
+            "name": "Test",
+            "use_relative_pathes": true,
+            "src_folder": "/../Test/src",
+            "build_folder": "/../Test/build"
+        }
+    ]
+}
