@@ -232,7 +232,6 @@ class OPCUAServer:
             self.server_xml_path,
             self.server_xml_file
         )
-        print(xml_file)
         tree = ET.parse(xml_file)
         root = tree.getroot()
 
