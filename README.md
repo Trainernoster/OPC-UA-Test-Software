@@ -67,6 +67,10 @@ OPC-UA-TEST-SOFTWARE/
 |   |   |
 │   │   └── asyncua_compiler.py         # Compiler converting models to asyncua code
 |   |
+│   ├── asyncua_PubSub/                 # Experimental test from unreleased asyncua
+│   │   ├── publisher_simple.py         # Publisher test script from asyncua
+│   │   └── subscriber_simple.py        # Subscriber test script from asyncua
+|   |
 │   ├── builder/                        # Build configuration and automation utilities
 │   │   ├── builder.py                  # Build orchestration script
 │   │   ├── builds.json                 # Build definitions
