@@ -1,5 +1,7 @@
 """
 Example creating a publisher that sends an Int32, String, Bool and ArrayInt16 from AddressSpace
+Commit: 68705b9
+Testet with commited release from GitHub in .venv
 """
 
 import asyncio
