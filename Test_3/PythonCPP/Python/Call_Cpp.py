@@ -19,5 +19,8 @@ def main():
     print("STDERR:")
     print(result.stderr)
 
+    print("RETURN CODE (int):")
+    print(result.returncode)
+
 if __name__ == "__main__":
     main()
